@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Killswitch_443 Controller</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.container {
+  width: 650px;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  color: #c084fc;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 6px;
+  text-shadow: 0 0 15px #a855f7;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #c084fc;
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.controller {
+  position: relative;
+  width: 600px;
+  height: 310px;
+  margin: auto;
+  background: #111018;
+  border: 3px solid #a855f7;
+  border-radius: 150px 150px 100px 100px;
+  box-shadow:
+    0 0 12px #a855f7,
+    0 0 35px #7e22ce;
+}
+
+.grip {
+  position: absolute;
+  width: 160px;
+  height: 145px;
+  bottom: -15px;
+  background: #111018;
+  border: 3px solid #a855f7;
+  border-radius: 45px 45px 90px 90px;
+  box-shadow: 0 0 15px #a855f7;
+}
+
+.left-grip {
+  left: 20px;
+  transform: rotate(12deg);
+}
+
+.right-grip {
+  right: 20px;
+  transform: rotate(-12deg);
+}
+
+.stick {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: radial-gradient(#555, #111);
+  border: 3px solid #a855f7;
+  box-shadow: 0 0 12px #9333ea;
+  z-index: 3;
+}
+
+.stick-dot {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #c084fc;
+  left: 22px;
+  top: 22px;
+  box-shadow: 0 0 15px #a855f7;
+}
+
+#leftStick {
+  left: 155px;
+  top: 150px;
+}
+
+#rightStick {
+  right: 155px;
+  top: 150px;
+}
+
+.button {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #21172c;
+  border: 2px solid #a855f7;
+  color: white;
+  font-size: 21px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 8px #9333ea;
+  z-index: 5;
+}
+
+.active {
+  background: #c026d3 !important;
+  box-shadow: 0 0 12px #e879f9, 0 0 30px #a855f7 !important;
+  color: white;
+}
+
+#triangle { right: 100px; top: 90px; }
+#circle { right: 55px; top: 135px; }
+#cross { right: 100px; top: 180px; }
+#square { right: 145px; top: 135px; }
+
+#up { left: 85px; top: 85px; }
+#down { left: 85px; top: 175px; }
+#left { left: 40px; top: 130px; }
+#right { left: 130px; top: 130px; }
+
+.shoulder {
+  position: absolute;
+  top: 25px;
+  width: 65px;
+  height: 30px;
+  border-radius: 12px;
+  background: #21172c;
+  border: 2px solid #a855f7;
+  color: white;
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+#l1 { left: 80px; }
+#r1 { right: 80px; }
+
+.trigger {
+  position: absolute;
+  top: 55px;
+  width: 55px;
+  height: 25px;
+  border-radius: 8px;
+  background: #21172c;
+  border: 2px solid #a855f7;
+  font-size: 11px;
+  padding-top: 4px;
+}
+
+#l2 { left: 85px; }
+#r2 { right: 85px; }
+
+.center {
+  position: absolute;
+  top: 95px;
+  left: 265px;
+  width: 70px;
+  height: 35px;
+  border-radius: 15px;
+  border: 2px solid #a855f7;
+  color: #c084fc;
+  font-size: 11px;
+  padding-top: 9px;
+}
+
+#status {
+  margin-top: 18px;
+  color: #c084fc;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">KILLSWITCH_443</div>
+<div class="subtitle">CONTROLLER INPUT DISPLAY</div>
+
+<div class="controller">
+
+<div class="grip left-grip"></div>
+<div class="grip right-grip"></div>
+
+<div class="shoulder" id="l1">L1</div>
+<div class="shoulder" id="r1">R1</div>
+
+<div class="trigger" id="l2">L2</div>
+<div class="trigger" id="r2">R2</div>
+
+<div class="center">OPTIONS</div>
+
+<div class="button" id="triangle">△</div>
+<div class="button" id="circle">○</div>
+<div class="button" id="cross">×</div>
+<div class="button" id="square">□</div>
+
+<div class="button" id="up">↑</div>
+<div class="button" id="down">↓</div>
+<div class="button" id="left">←</div>
+<div class="button" id="right">→</div>
+
+<div class="stick" id="leftStick">
+<div class="stick-dot"></div>
+</div>
+
+<div class="stick" id="rightStick">
+<div class="stick-dot"></div>
+</div>
+
+</div>
+
+<div id="status">CONTROLLER SEARCHING...</div>
+
+</div>
+
+<script>
+const mapping = {
+  cross: 0,
+  circle: 1,
+  square: 2,
+  triangle: 3,
+  l1: 4,
+  r1: 5,
+  l2: 6,
+  r2: 7,
+  up: 12,
+  down: 13,
+  left: 14,
+  right: 15
+};
+
+function update() {
+  const pads = navigator.getGamepads();
+  const pad = [...pads].find(p => p && p.connected);
+
+  const status = document.getElementById("status");
+
+  if (!pad) {
+    status.textContent = "CONTROLLER SEARCHING...";
+    requestAnimationFrame(update);
+    return;
+  }
+
+  status.textContent = "● CONTROLLER CONNECTED";
+
+  for (const [id, index] of Object.entries(mapping)) {
+    const element = document.getElementById(id);
+    const button = pad.buttons[index];
+
+    element.classList.toggle(
+      "active",
+      button.pressed || button.value > 0.5
+    );
+  }
+
+  const sticks = [
+    {id: "leftStick", x: 0, y: 1},
+    {id: "rightStick", x: 2, y: 3}
+  ];
+
+  sticks.forEach(stick => {
+    const element = document.querySelector(
+      "#" + stick.id + " .stick-dot"
+    );
+
+    const x = pad.axes[stick.x] || 0;
+    const y = pad.axes[stick.y] || 0;
+
+    element.style.transform =
+      `translate(${x * 22}px, ${y * 22}px)`;
+  });
+
+  requestAnimationFrame(update);
+}
+
+window.addEventListener("gamepadconnected", update);
+
+update();
+</script>
+
+</body>
+</html>
